@@ -31,3 +31,14 @@ export async function getSpecialities(): Promise<DataSpeciality> {
 
   return resp.json();
 }
+
+export async function addUUID(speciality: string) {
+  const resp = await fetch("http://localhost:1337/api/task-links", {
+    method: "POST",
+    body: JSON.stringify({
+      speciality: speciality
+    })
+  })
+
+  return resp.json()
+}
