@@ -7,11 +7,12 @@ import {
   Button,
 } from '@strapi/design-system';
 import { useEffect, useState } from 'react';
-import { Speciality as Specialty, getSpecialities } from '../api/plugin';
+import { Speciality as Specialty, addUUID, getSpecialities, getUUID } from '../api/plugin';
 
 const HomePage = () => {
   const [specialities, setSpecialities] = useState<Specialty[]>([]);
   const [selectValue, setSelectValue] = useState<string | null>(null);
+  const [link, setLink] = useState("")
 
   function getSpecialitiesFromFetch() {
     const correctedSpecialities: Specialty[] = [];
@@ -31,6 +32,13 @@ const HomePage = () => {
   useEffect(() => {
     getSpecialitiesFromFetch();
   }, []);
+
+  function createLink(){
+   addUUID(selectValue!).then((res) => {
+    getUUID(res.documentId).then((resp) => console.log(resp))
+   })
+
+  }
 
   return (
     <Main
@@ -73,7 +81,7 @@ const HomePage = () => {
             </SingleSelect>
           </Box>
 
-          <Button style={{ width: 270, height: 33 }} disabled={!selectValue}>
+          <Button style={{ width: 270, height: 33 }} disabled={!selectValue}  onClick={createLink}>
             Сгенерировать ссылку на задание
           </Button>
         </>

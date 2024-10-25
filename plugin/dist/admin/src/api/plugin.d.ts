@@ -25,4 +25,5 @@ type DataSpeciality = {
 };
 export declare function getSpecialities(): Promise<DataSpeciality>;
 export declare function addUUID(speciality: string): Promise<any>;
+export declare function getUUID(documentId: string): Promise<any>;
 export {};
