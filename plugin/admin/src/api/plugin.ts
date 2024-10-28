@@ -48,7 +48,5 @@ export async function getUUID(documentId: string) {
     method: 'GET',
   });
 
-  console.log(documentId)
-
   return resp.json();
 }
