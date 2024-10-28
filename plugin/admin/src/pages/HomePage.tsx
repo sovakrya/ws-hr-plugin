@@ -74,11 +74,16 @@ const HomePage = () => {
   function createLink() {
     addUUID(selectValue!).then((res) => {
       getUUID(res.documentId).then((resp) => {
-        setLink(`${host}/tasks/${resp.uuid}`);
+        setLink(`${host}/tasks/${resp.data.uuid}`);
       });
     });
 
     setIsGenerated(true);
+  }
+
+ async function copyLink(){
+    await navigator.clipboard.writeText(link)
+    setIsCopy(true)
   }
 
   return (
@@ -136,7 +141,7 @@ const HomePage = () => {
                 >
                   {link}
                 </BaseLink>
-                <button style={{ cursor: 'pointer' }}>
+                <button style={{ cursor: 'pointer' }} onClick={copyLink}>
                   <svg
                     width="20"
                     height="20"
