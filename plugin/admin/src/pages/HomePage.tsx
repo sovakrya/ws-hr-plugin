@@ -11,7 +11,7 @@ import { Speciality as Specialty, addUUID, getSpecialities, getUUID } from '../a
 import styled from 'styled-components';
 import { BaseLink } from '@strapi/design-system';
 
-const host = 'http://localhost:1337';
+const host = 'http://localhost:3000';
 
 const LinkContentBox = styled.div`
   display: flex;
@@ -58,7 +58,9 @@ const HomePage = () => {
       for (let speciality of res.data) {
         for (let task of speciality.tasks) {
           if (speciality.activity && task.activity) {
+            if(!correctedSpecialities.includes(speciality)){
             correctedSpecialities.push(speciality);
+            }
           }
         }
       }
@@ -74,6 +76,7 @@ const HomePage = () => {
   function createLink() {
     addUUID(selectValue!).then((res) => {
       getUUID(res.documentId).then((resp) => {
+
         setLink(`${host}/tasks/${resp.data.uuid}`);
       });
     });
