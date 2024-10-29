@@ -27,7 +27,26 @@ type DataSpeciality = {
 };
 
 export async function getSpecialities(): Promise<DataSpeciality> {
-  const resp = await fetch('http://localhost:1337/api/specialities?populate=*');
+  const resp = await fetch('http://localhost:1337/api/specialities?populate=*', { method: 'GET' });
+
+  return resp.json();
+}
+
+export async function addUUID(speciality: string) {
+  const resp = await fetch('http://localhost:1337/api/task-links', {
+    method: 'POST',
+    body: JSON.stringify({
+      speciality: speciality,
+    }),
+  });
+
+  return resp.json();
+}
+
+export async function getUUID(documentId: string) {
+  const resp = await fetch(`http://localhost:1337/api/task-links/${documentId}?populate=task`, {
+    method: 'GET',
+  });
 
   return resp.json();
 }

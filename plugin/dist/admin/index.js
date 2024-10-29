@@ -38,7 +38,7 @@ const index = {
         defaultMessage: PLUGIN_ID
       },
       Component: async () => {
-        const { App } = await Promise.resolve().then(() => require("../_chunks/App-BCZA7wuh.js"));
+        const { App } = await Promise.resolve().then(() => require("../_chunks/App-BSouwvCp.js"));
         return App;
       }
     });
